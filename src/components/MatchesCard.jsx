@@ -5,7 +5,7 @@ export default function MatchesCard({ match }) {
     <div className="grid grid-cols-3 bg-gray-200 shadow-lg rounded-lg p-4 items-center m-5">
       <div className="flex justify-center">
         <img
-          src={`/src/utilities/images/${match.team1.logo}.png`}
+          src={`/public/${match.team1.logo}.png`}
           alt={match.team1.name}
           className="w-16 h-16 object-cover rounded-full"
         />
@@ -24,7 +24,7 @@ export default function MatchesCard({ match }) {
 
       <div className="flex justify-center">
         <img
-          src={`/src/utilities/images/${match.team2.logo}.png`}
+          src={`/public/${match.team2.logo}.png`}
           alt={match.team2.name}
           className="w-16 h-16 object-cover rounded-full"
         />

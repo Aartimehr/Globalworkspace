@@ -13,16 +13,16 @@ export default function Landing() {
 
   return (
     <div className="w-full overflow-hidden">
-      <div className="h-screen relative">
+      <div className="h-[70vh] relative">
         <video
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        >
-          <source src="/ball.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        autoPlay
+        loop
+        muted
+          className="absolute top-0 left-0 w-full h-full object-cover object-top">
+            <source src="/ball.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+            </video>
+
 
         <div className="relative z-10 flex justify-end items-center h-full">
           <h1 className="text-white text-6xl font-bold animate-pulse pr-16">
@@ -30,6 +30,7 @@ export default function Landing() {
           </h1>
         </div>
       </div>
+      
 
       <div className="h-full py-12 overflow-x-scroll bg-slate-300 mx-auto scrollbar-hide">
         <motion.div
