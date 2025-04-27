@@ -1,5 +1,6 @@
 // import React from "react";
 
+<<<<<<< HEAD
 // export default function Step1({ formData, handleChange, nextStep }) {
 //   return (
 //     <div className="flex justify-between items-center h-screen">
@@ -17,6 +18,24 @@
 //             required
 //           />
 //         </div>
+=======
+export default function Step1({ formData, handleChange, nextStep }) {
+  return (
+    <div className="flex justify-between items-center h-screen">
+      <div className="w-1/2 ml-10">
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Tournament Name:</label>
+          <input
+            type="text"
+            name="tournamentName"
+            value={formData.tournamentName}
+            onChange={handleChange}
+            className="w-full border rounded p-2"
+            placeholder="Enter the tournament name"
+            required
+          />
+        </div>
+>>>>>>> 867430b8917b981fa9fc064ddaf70001bef47d3f
 
 //         <div className="mb-4">
 //           <label className="block text-sm font-medium mb-1">City:</label>
@@ -81,6 +100,7 @@
 //           />
 //         </div>
 
+<<<<<<< HEAD
 //         <button
 //           onClick={nextStep}
 //           className="bg-green-500 text-white px-4 py-2 rounded"
@@ -94,3 +114,22 @@
 //     </div>
 //   );
 // }
+=======
+        <button
+          onClick={nextStep}
+          className="bg-green-500 text-white px-4 py-2 rounded"
+        >
+          Next
+        </button>
+      </div>
+      
+      {/* Right Side with vk.webp */}
+      <div
+        className="w-1/2 h-full bg-cover bg-center"
+        style={{ backgroundImage: "url('/src/utilities/images/vk.webp')" }} 
+      >
+      </div>
+    </div>
+  );
+}
+>>>>>>> 867430b8917b981fa9fc064ddaf70001bef47d3f
