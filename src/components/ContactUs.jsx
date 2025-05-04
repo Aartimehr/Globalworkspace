@@ -4,28 +4,63 @@ import { motion } from "framer-motion";
 export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "", // Added email field
     phone: "",
     message: "",
   });
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [errors, setErrors] = useState({}); // State to hold validation errors
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    // Clear any existing error for this field when the user types
+    setErrors({ ...errors, [name]: "" });
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+      isValid = false;
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+      isValid = false;
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Invalid phone number (10 digits required)";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log("Form data:", formData);
-    setFormSubmitted(true);
+    if (validateForm()) {
+      console.log("Form data:", formData);
+      setFormSubmitted(true);
 
-    // todo: IWhen backend is setup, send the data via API POST
-    // await fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(formData),
-    // });
+      // todo: When backend is setup, send the data via API POST
+      // await fetch("/api/contact", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(formData),
+      // });
+    }
   };
 
   return (
@@ -64,10 +99,27 @@ export default function ContactUs() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none"
-                required
+                className={`w-full p-3 border ${
+                  errors.name ? "border-red-500" : "border-gray-300"
+                } rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none`}
                 placeholder="Your full name"
               />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            </div>
+
+            <div className="mb-5">
+              <label className="block text-gray-700 font-semibold mb-2">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={`w-full p-3 border ${
+                  errors.email ? "border-red-500" : "border-gray-300"
+                } rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none`}
+                placeholder="Your email address"
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
 
             <div className="mb-5">
@@ -77,10 +129,12 @@ export default function ContactUs() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none"
-                required
+                className={`w-full p-3 border ${
+                  errors.phone ? "border-red-500" : "border-gray-300"
+                } rounded-lg focus:ring-2 focus:ring-yellow-500 outline-none`}
                 placeholder="Your phone number"
               />
+              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
             </div>
 
             <div className="mb-5">
