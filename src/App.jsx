@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import PlayerRegistration from "./components/PlayerRegistration";
 import TournamentForm from "./components/TournamentForm";
 import PlayerForm from "./components/PlayerForm";
+import Leaderboard from "./components/Leaderboard";
 function App() {
 
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/about" element={<About/>}></Route>
         <Route path="/navbar" element={<Navbar/>}></Route>
         <Route path="/services" element={<Services/>}></Route>
+        <Route path="/Leaderboard" element={<Leaderboard/>}></Route>
       </Routes>
       <Footer/>
     </HashRouter>

@@ -16,14 +16,14 @@ export default function Navbar() {
           <ul className="flex space-x-8">
             <li className="relative group">
               <Link
-                to="/" className="hover:underline decoration-2 underline-offset-4 transition duration-300">
+                to="/" className="hover:underline decoration-2 underline-offset-4 transition duration-400">
                 Home
               </Link>
             </li>
             <li className="relative group">
               <Link
-                to="/"
-                className="hover:underline decoration-2 underline-offset-4 transition duration-300"
+                to="/Leaderboard"
+                className="hover:underline decoration-2 underline-offset-4 transition duration-400"
               >
                 Leaderboard
               </Link>
