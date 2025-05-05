@@ -89,7 +89,9 @@ export default function ContactUs() {
               transition={{ duration: 0.8 }}
               className="text-3xl font-extrabold text-center mb-8"
             >
-              Request a Call
+              <h1 className="text-4xl font-extrabold text-center mb-8 text-gray-800">
+          Request <span className="text-yellow-500">a call</span>
+        </h1>
             </motion.h2>
 
             <div className="mb-5">

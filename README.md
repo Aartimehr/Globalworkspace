@@ -12,7 +12,7 @@ CricFolio provides users with:
 - **Services**: Learn more about the services we provide.
 - **Responsive Navbar**: Always-visible navbar for easy navigation across the site.
   
-## 🎯 Features
+## 🎯 Features 
 
 - **Landing Page**: Background video with dynamic content.
 - **Tournament Registration**: Detailed form with validation and step-based navigation.

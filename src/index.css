@@ -26,7 +26,7 @@
   bottom: 0;
   transform: translateX(-50%);
   transition: width 0.3s ease;
-}
+} 
 
 .group:hover .nav-link::after {
   width: 100%;

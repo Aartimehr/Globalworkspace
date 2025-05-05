@@ -12,7 +12,7 @@ export default function Trending() {
     return { day, month };
   };
 
-  return (
+  return ( 
     <div className="p-6">
       <div className="text-5xl font-bold mb-8">TRENDING NOW</div>
 

@@ -21,7 +21,7 @@ export default function MatchesCard({ match }) {
         <span className="block text-gray-500">{match.league}</span>
         <span className="block text-gray-500">{match.venue}</span> 
       </div>
-
+ 
       <div className="flex justify-center">
         <img
           src={`/public/${match.team2.logo}.png`}

@@ -26,7 +26,7 @@ export default function Landing() {
 
         <div className="relative z-10 flex justify-end items-center h-full">
           <h1 className="text-white text-6xl font-bold animate-pulse pr-16">
-            Welcome to CricFolio
+            Welcome to CRICFOLIO
           </h1>
         </div>
       </div>

@@ -1,16 +1,15 @@
 // TournamentRegistration.jsx
-import TournamentForm from '/src/components/TournamentForm';
-import TournamentDisplay from './TournamentDisplay'; // Import the new component
+// import React from 'react';
+import TournamentForm from './TournamentForm'; // Import the TournamentForm component
 
 export default function TournamentRegistration() {
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <TournamentDisplay />
-      
-      <div className="w-1/2 p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center">Or Host Your Own</h1>
+    <div className= "bg-register bg-cover bg-center min-h-screen overflow-hidden flex items-center justify-center">
+    <div className="bg-white/80 backdrop-blur-md rounded-2xl flex justify-center shadow-lg p-10 max-w-5xl mx-4 md:mx-auto">
+      <div className="max-w-2xl w-full backdrop-blur-md shadow-lg">
         <TournamentForm />
       </div>
+    </div>
     </div>
   );
 }

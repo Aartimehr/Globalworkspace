@@ -16,9 +16,10 @@ export default {
         //'Aboutus': "url('/src/utilities/images/stadium.jpg')",
         'contactus': "url('/src/utilities/images/stadiumm.jpg')",
         'register': "url('/src/utilities/images/cricketball.jpg')",
+        'cricket-ball-resting-on-bat': "url('/src/utilities/images/cricket-ball-resting-on-bat.jpg')",
         // 'service': "url('/src/utilities/images/cricketplayer.jpg')",
       },keyframes: {
-        deconstructed1: {
+        deconstructed1: { 
           '0%': { transform: 'translateX(100%)' },
           '26%': { transform: 'translateX(0%)' },
           '83%': { transform: 'translateX(-0.1%)' },

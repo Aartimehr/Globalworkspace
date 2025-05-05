@@ -21,7 +21,7 @@ export const mockTeams = [
       logo: "vipers",
       playing11: [
         "Player 1",
-        "Player 2",
+        "Player 2", 
         "Player 3",
         "Player 4",
         "Player 5",

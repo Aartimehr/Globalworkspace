@@ -35,15 +35,15 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="relative group">
-              <Link to="/tournamentregistration" 
-              className="nav-link">
-                Tournaments
-              </Link>
-            </li>
-            <li className="relative group">
               <Link to="/PlayerRegistration" 
               className="nav-link">
                 Registration
+              </Link>
+            </li>
+            <li className="relative group">
+              <Link to="/TournamentRegistration" 
+              className="nav-link">
+               Tournaments
               </Link>
             </li>
           </ul>
