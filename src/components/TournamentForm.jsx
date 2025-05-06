@@ -268,7 +268,7 @@ export default function TournamentForm() {
       {step === 3 && (
         <div className="space-y-4">
           <div>
-            <label htmlFor="guidelines" className="block text-gray-700 text-sm font-bold mb-2">Guidelines</label>
+            <label htmlFor="guidelines" className="block text-gray-700 text-sm font-bold mb-2">Guidelines (Optional) </label>
             <textarea
               id="guidelines"
               name="guidelines"
