@@ -294,7 +294,7 @@ export default function TournamentForm() {
       {step === 4 && (
         <div className="space-y-4">
           <div>
-            <label htmlFor="banner" className="block text-gray-700 text-sm font-bold mb-2">Tournament Banner (Optional)</label>
+            <label htmlFor="banner" className="block text-gray-700 text-sm font-bold mb-2">Tournament Banner </label>
             <input type="file" id="banner" onChange={handleFileChange} className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.banner ? "border-red-500" : ""}`} />
             {errors.banner && <p className="text-red-500 text-sm mt-1">{errors.banner}</p>}
             {formData.banner && (
