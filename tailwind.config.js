@@ -8,11 +8,11 @@ export default {
     extend: {
       backgroundImage: {
         'cricket': "url('/src/utilities/images/—Pngtree—3d render of a cricket_11173054.jpg')",
-        'phantoms': "url('/public/phantoms.png')",
-        'viper': "url('/public/viper.png')",
-        'strikers': "url('/public/striker.png')",
-        'phoenix': "url('/public/phoenix.png')",
-        'titans': "url('/public/images/titans.png')",
+        'phantoms': "url('/phantoms.png')",
+        'viper': "url('/viper.png')",
+        'strikers': "url('/striker.png')",
+        'phoenix': "url('/phoenix.png')",
+        'titans': "url('/images/titans.png')",
         //'Aboutus': "url('/src/utilities/images/stadium.jpg')",
         'contactus': "url('/src/utilities/images/stadiumm.jpg')",
         'register': "url('/src/utilities/images/cricketball.jpg')",
