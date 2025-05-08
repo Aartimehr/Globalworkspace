@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import axios from '../services/api'; // Todo: Uncomment when backend ready to deploy
+import { useNavigate } from 'react-router-dom';
 
 const stepTitles = [
   "Tournament Details",
@@ -8,7 +8,8 @@ const stepTitles = [
   "Banner & Submit",
 ];
 
-export default function TournamentForm() {
+const TournamentForm = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     tournamentName: "",
@@ -22,19 +23,23 @@ export default function TournamentForm() {
     ballType: "",
     matchStyle: "",
     guidelines: "",
-    banner: null,
   });
+  const [banner, setBanner] = useState(null);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" })); // Clear error on change
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
 
   const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, banner: e.target.files[0] }));
-    setErrors((prevErrors) => ({ ...prevErrors, banner: "" }));
+    const file = e.target.files[0];
+    if (file) {
+      setBanner(file);
+      setErrors((prevErrors) => ({ ...prevErrors, banner: "" }));
+    }
   };
 
   const validateStep = () => {
@@ -51,8 +56,6 @@ export default function TournamentForm() {
       if (!formData.category) newErrors.category = "Category is required";
       if (!formData.ballType) newErrors.ballType = "Ball Type is required";
       if (!formData.matchStyle) newErrors.matchStyle = "Match Style is required";
-    } else if (step === 4 && !formData.banner) {
-      newErrors.banner = "Banner is required";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -63,28 +66,51 @@ export default function TournamentForm() {
       setStep((prev) => prev + 1);
     }
   };
+
   const prevStep = () => setStep((prev) => prev - 1);
 
   const submitForm = async () => {
     if (validateStep()) {
-      console.log("Tournament form submitted", formData);
-      // Todo: Send to backend when ready
-      /*
+      setLoading(true);
       try {
-        await axios.post('/api/tournaments', formData);
-        console.log('Tournament registered successfully!');
-      } catch (error) {
-        console.error('Error submitting tournament:', error);
+        // Create FormData object to send multipart/form-data
+        const submitData = new FormData();
+        
+        // Add all form fields to FormData
+        Object.entries(formData).forEach(([key, value]) => {
+          submitData.append(key, value);
+        });
+
+        // Add banner if selected
+        if (banner) {
+          submitData.append('banner', banner);
+        }
+
+        const response = await fetch('http://127.0.0.1:8000/tournaments/', {
+          method: 'POST',
+          body: submitData,
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.detail || 'Failed to register tournament');
+        }
+
+        await response.json();
+        navigate('/tournaments');
+      } catch (err) {
+        setErrors(prev => ({ ...prev, submit: err.message }));
+      } finally {
+        setLoading(false);
       }
-      */
     }
   };
 
   return (
     <div className="bg-white shadow-md rounded-lg p-8">
       <h1 className="text-4xl font-extrabold text-center mb-8 text-gray-800">
-          Host a <span className="text-yellow-500">Tournament</span>
-        </h1>
+        Host a <span className="text-yellow-500">Tournament</span>
+      </h1>
       <div className="mb-4">
         <div className="relative flex justify-between items-center">
           {stepTitles.map((title, index) => (
@@ -105,6 +131,12 @@ export default function TournamentForm() {
         </div>
       </div>
 
+      {errors.submit && (
+        <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+          <p className="text-red-700">{errors.submit}</p>
+        </div>
+      )}
+
       {step === 1 && (
         <div className="space-y-4">
           <div className="mb-2">
@@ -113,6 +145,7 @@ export default function TournamentForm() {
               type="text"
               id="tournamentName"
               name="tournamentName"
+              value={formData.tournamentName}
               onChange={handleChange}
               placeholder="Enter tournament name"
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.tournamentName ? "border-red-500" : ""}`}
@@ -126,6 +159,7 @@ export default function TournamentForm() {
                 type="text"
                 id="state"
                 name="state"
+                value={formData.state}
                 onChange={handleChange}
                 placeholder="Enter state"
                 className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.state ? "border-red-500" : ""}`}
@@ -138,6 +172,7 @@ export default function TournamentForm() {
                 type="text"
                 id="city"
                 name="city"
+                value={formData.city}
                 onChange={handleChange}
                 placeholder="Enter city"
                 className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.city ? "border-red-500" : ""}`}
@@ -151,6 +186,7 @@ export default function TournamentForm() {
               type="text"
               id="stadiumPark"
               name="stadiumPark"
+              value={formData.stadiumPark}
               onChange={handleChange}
               placeholder="Enter stadium or park name"
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.stadiumPark ? "border-red-500" : ""}`}
@@ -163,6 +199,7 @@ export default function TournamentForm() {
               type="text"
               id="organizerName"
               name="organizerName"
+              value={formData.organizerName}
               onChange={handleChange}
               placeholder="Enter organizer name"
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.organizerName ? "border-red-500" : ""}`}
@@ -176,6 +213,7 @@ export default function TournamentForm() {
                 type="date"
                 id="startDate"
                 name="startDate"
+                value={formData.startDate}
                 onChange={handleChange}
                 className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.startDate ? "border-red-500" : ""}`}
               />
@@ -187,6 +225,7 @@ export default function TournamentForm() {
                 type="date"
                 id="endDate"
                 name="endDate"
+                value={formData.endDate}
                 onChange={handleChange}
                 className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.endDate ? "border-red-500" : ""}`}
               />
@@ -208,16 +247,15 @@ export default function TournamentForm() {
             <select
               id="category"
               name="category"
+              value={formData.category}
               onChange={handleChange}
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.category ? "border-red-500" : ""}`}
             >
               <option value="">Select Category</option>
               <option value="Open">Open</option>
+              <option value="Under 19">Under 19</option>
               <option value="Corporate">Corporate</option>
               <option value="Regional">Regional</option>
-              <option value="Under 19">Under 19</option>
-              <option value="Under 17">Under 17</option>
-              {/* add more options */}
             </select>
             {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
           </div>
@@ -227,6 +265,7 @@ export default function TournamentForm() {
             <select
               id="ballType"
               name="ballType"
+              value={formData.ballType}
               onChange={handleChange}
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.ballType ? "border-red-500" : ""}`}
             >
@@ -242,6 +281,7 @@ export default function TournamentForm() {
             <select
               id="matchStyle"
               name="matchStyle"
+              value={formData.matchStyle}
               onChange={handleChange}
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.matchStyle ? "border-red-500" : ""}`}
             >
@@ -268,7 +308,7 @@ export default function TournamentForm() {
       {step === 3 && (
         <div className="space-y-4">
           <div>
-            <label htmlFor="guidelines" className="block text-gray-700 text-sm font-bold mb-2">Guidelines (Optional) </label>
+            <label htmlFor="guidelines" className="block text-gray-700 text-sm font-bold mb-2">Guidelines (Optional)</label>
             <textarea
               id="guidelines"
               name="guidelines"
@@ -294,12 +334,18 @@ export default function TournamentForm() {
       {step === 4 && (
         <div className="space-y-4">
           <div>
-            <label htmlFor="banner" className="block text-gray-700 text-sm font-bold mb-2">Tournament Banner </label>
-            <input type="file" id="banner" onChange={handleFileChange} className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.banner ? "border-red-500" : ""}`} />
+            <label htmlFor="banner" className="block text-gray-700 text-sm font-bold mb-2">Tournament Banner</label>
+            <input 
+              type="file" 
+              id="banner" 
+              accept="image/*"
+              onChange={handleFileChange} 
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.banner ? "border-red-500" : ""}`} 
+            />
             {errors.banner && <p className="text-red-500 text-sm mt-1">{errors.banner}</p>}
-            {formData.banner && (
+            {banner && (
               <div className="mt-2">
-                <img src={URL.createObjectURL(formData.banner)} alt="Banner Preview" className="w-full h-auto rounded-md" />
+                <img src={URL.createObjectURL(banner)} alt="Banner Preview" className="w-full h-auto rounded-md" />
               </div>
             )}
           </div>
@@ -307,12 +353,18 @@ export default function TournamentForm() {
             <button onClick={prevStep} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Back
             </button>
-            <button onClick={submitForm} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Submit
+            <button 
+              onClick={submitForm} 
+              disabled={loading}
+              className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {loading ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default TournamentForm;

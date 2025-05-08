@@ -1,97 +1,57 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
-const dummyTournaments = [
-  {
-    id: 1,
-    tournamentName: 'Summer Bash 2025',
-    state: 'Delhi',
-    city: 'New Delhi',
-    stadiumPark: 'Feroz Shah Kotla Stadium',
-    organizerName: 'Delhi Cricket Association',
-    startDate: '2025-06-15',
-    endDate: '2025-06-30',
-    category: 'Open',
-    ballType: 'Leather',
-    matchStyle: 'T20',
-    guidelines: 'Standard T20 rules apply. Matches will be held in the evening.',
-    banner: null,
-  },
-  {
-    id: 2,
-    tournamentName: 'Corporate Cup',
-    state: 'Maharashtra',
-    city: 'Mumbai',
-    stadiumPark: 'Wankhede Stadium',
-    organizerName: 'Mumbai Cricket Association',
-    startDate: '2025-07-01',
-    endDate: '2025-07-15',
-    category: 'Corporate',
-    ballType: 'Tennis',
-    matchStyle: 'ODI',
-    guidelines: 'Corporate teams only, specific rules apply. Lunch will be provided.',
-    banner: null,
-  },
-  {
-    id: 3,
-    tournamentName: 'Regional Rumble',
-    state: 'Karnataka',
-    city: 'Bangalore',
-    stadiumPark: 'M. Chinnaswamy Stadium',
-    organizerName: 'Karnataka State Cricket Association',
-    startDate: '2025-08-01',
-    endDate: '2025-08-15',
-    category: 'Regional',
-    ballType: 'Leather',
-    matchStyle: 'Test',
-    guidelines: 'Teams from South India only. Matches will be played over 5 days.',
-    banner: null,
-  },
-  {
-    id: 4,
-    tournamentName: 'U19 Challenge',
-    state: 'Tamil Nadu',
-    city: 'Chennai',
-    stadiumPark: 'M.A. Chidambaram Stadium',
-    organizerName: 'Tamil Nadu Cricket Association',
-    startDate: '2025-09-01',
-    endDate: '2025-09-15',
-    category: 'Under 19',
-    ballType: 'Leather',
-    matchStyle: 'ODI',
-    guidelines: 'Under 19 players only. Player verification required.',
-    banner: null,
-  },
-  {
-    id: 5,
-    tournamentName: 'Weekend Warriors',
-    state: 'West Bengal',
-    city: 'Kolkata',
-    stadiumPark: 'Eden Gardens',
-    organizerName: 'Cricket Association of Bengal',
-    startDate: '2025-10-01',
-    endDate: '2025-10-15',
-    category: 'Open',
-    ballType: 'Tennis',
-    matchStyle: 'T20',
-    guidelines: 'Weekend matches only. Limited spots available.',
-    banner: null,
-  },
-];
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TournamentDisplay = () => {
+  const [tournaments, setTournaments] = useState([]);
   const [selectedTournament, setSelectedTournament] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchTournaments = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/tournaments/');
+        if (!response.ok) {
+          throw new Error('Failed to fetch tournaments');
+        }
+        const data = await response.json();
+        setTournaments(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTournaments();
+  }, []);
 
   const handleTournamentClick = (id) => {
     setSelectedTournament(id);
   };
 
   const handleRegisterClick = () => {
-    navigate('/playerform'); // Navigate to the PlayerForm route
+    navigate('/playerform');
   };
 
-  const tournament = dummyTournaments.find((t) => t.id === selectedTournament);
+  const tournament = tournaments.find((t) => t.id === selectedTournament);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[400px]">
+        <p className="text-gray-600">Loading tournaments...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-[400px]">
+        <p className="text-red-600">Error: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex w-full rounded-lg shadow-md overflow-hidden">
@@ -113,20 +73,20 @@ const TournamentDisplay = () => {
               </tr>
             </thead>
             <tbody className="text-sm text-gray-700">
-              {dummyTournaments.map((tournament) => (
+              {tournaments.map((tournament) => (
                 <tr
                   key={tournament.id}
                   onClick={() => handleTournamentClick(tournament.id)}
                   className="cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                 >
                   <td className="px-4 py-4 whitespace-nowrap">
-                    {tournament.tournamentName}
+                    {tournament.tournament_name}
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
                     {tournament.city}
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
-                    {tournament.startDate}
+                    {tournament.start_date}
                   </td>
                 </tr>
               ))}
@@ -139,7 +99,14 @@ const TournamentDisplay = () => {
         {tournament ? (
           <div className="bg-white rounded-md shadow-sm p-6 w-full flex flex-col justify-between items-start h-full">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">{tournament.tournamentName}</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">{tournament.tournament_name}</h3>
+              {tournament.banner_url && (
+                <img 
+                  src={tournament.banner_url} 
+                  alt="Tournament Banner" 
+                  className="w-full h-40 object-cover rounded-md mb-4"
+                />
+              )}
               <p className="text-sm text-gray-600 mb-2">
                 <span className="font-medium">State:</span> {tournament.state}
               </p>
@@ -147,28 +114,31 @@ const TournamentDisplay = () => {
                 <span className="font-medium">City:</span> {tournament.city}
               </p>
               <p className="text-sm text-gray-600 mb-2">
-                <span className="font-medium">Venue:</span> {tournament.stadiumPark}
+                <span className="font-medium">Venue:</span> {tournament.stadium_park}
               </p>
               <p className="text-sm text-gray-600 mb-2">
-                <span className="font-medium">Organizer:</span> {tournament.organizerName}
+                <span className="font-medium">Organizer:</span> {tournament.organizer_name}
               </p>
               <p className="text-sm text-gray-600 mb-2">
-                <span className="font-medium">Starts:</span> {tournament.startDate}
+                <span className="font-medium">Starts:</span> {tournament.start_date}
               </p>
               <p className="text-sm text-gray-600 mb-2">
-                <span className="font-medium">Ends:</span> {tournament.endDate}
+                <span className="font-medium">Ends:</span> {tournament.end_date}
               </p>
               <p className="text-sm text-gray-600 mb-2">
                 <span className="font-medium">Category:</span> {tournament.category}
               </p>
               <p className="text-sm text-gray-600 mb-2">
-                <span className="font-medium">Ball Type:</span> {tournament.ballType}
+                <span className="font-medium">Ball Type:</span> {tournament.ball_type}
               </p>
               <p className="text-sm text-gray-600 mb-2">
-                <span className="font-medium">Style:</span> {tournament.matchStyle}
+                <span className="font-medium">Style:</span> {tournament.match_style}
               </p>
               <p className="text-sm text-gray-600">
                 <span className="font-medium">Guidelines:</span> {tournament.guidelines}
+              </p>
+              <p className="text-sm text-gray-600 mt-2">
+                <span className="font-medium">Created:</span> {new Date(tournament.created_at).toLocaleDateString()}
               </p>
             </div>
             <button
