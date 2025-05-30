@@ -14,7 +14,7 @@ export default function Trending() {
 
   return ( 
     <div className="p-6">
-      <div className="text-5xl font-bold mb-8">TRENDING NOW</div>
+      <div className="text-1xl font-bold mb-8">TRENDING NOW</div>
 
       <button className="relative mb-8 h-96 overflow-hidden rounded-lg group">
         <div
@@ -53,13 +53,13 @@ export default function Trending() {
                   const { day, month } = formatDate(article.date);
                   return (
                     <div>
-                      <span className="block text-6xl font-bold">{day}</span>
+                      <span className="block text-4xl font-bold">{day}</span>
                       <span className="block text-lg font-medium">{month}</span>
                     </div>
                   );
                 })()}
               </div>
-              <h2 className="text-4xl font-bold mb-2">{article.title}</h2>
+              <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
             </div>
           </button>
         ))}
