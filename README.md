@@ -25,6 +25,7 @@ CricFolio provides users with:
 - **Animations**: Framer Motion
 - **Routing**: React Router
 - **Version Control**: Git, GitHub
+- **Backend**: POSTgreSQL, FASTAPIs
 
 ## 📂 Folder Structure
 
