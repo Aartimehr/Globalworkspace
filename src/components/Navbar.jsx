@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../utilities/images/logo1.png';
-import MatchesCard from '../components/MatchesCard';
+import CountryCard from './Countrycard';
 import { mockUpcomingMatches } from '../data/mockData';
 
 export default function Navbar() {
@@ -25,11 +25,11 @@ export default function Navbar() {
               </Link>
             </li>
 
-            <li className="relative group">
+            {/* <li className="relative group">
               <Link to="/Leaderboard" className="hover:underline decoration-2 underline-offset-4 transition duration-400">
                 Leaderboard
               </Link>
-            </li>
+            </li> */}
 
             {/* ✅ Matches Dropdown Preview */}
             <li
@@ -37,16 +37,16 @@ export default function Navbar() {
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
             >
-              <Link to="/matches" className="hover:underline decoration-2 underline-offset-4 transition duration-400">
+              {/* <Link to="/matches" className="hover:underline decoration-2 underline-offset-4 transition duration-400">
                 Matches
-              </Link>
+              </Link> */}
 
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md z-50 p-4 w-[700px]">
                   <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
                     {mockUpcomingMatches.slice(0, 3).map((match, index) => (
                       <div key={index} className="transform scale-90 w-[220px]">
-                        <MatchesCard match={match} />
+                        <CountryCard match={match} />
                       </div>
                     ))}
                   </div>
@@ -54,14 +54,14 @@ export default function Navbar() {
               )}
             </li>
 
-            <li className="relative group">
+            {/* <li className="relative group">
               <Link to="/PlayerRegistration" className="nav-link">
                 Registration
-              </Link>
-            </li>
+              </Link> */}
+            {/* </li> */}
             <li className="relative group">
-              <Link to="/TournamentRegistration" className="nav-link">
-                Tournaments
+              <Link to="/CandidateForm" className="nav-link">
+               Candidate Form
               </Link>
             </li>
             <li className="relative group">

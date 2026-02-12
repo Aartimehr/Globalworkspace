@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-// import React from "react";
+import React from "react";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -10,35 +10,26 @@ const cardVariants = {
 const Services = () => {
   const servicesData = [
     {
-      title: "Tournament Registration",
+      title: "Fresh Updates on jobs",
       description:
-        "Register for upcoming cricket tournaments easily through our platform. We provide a hassle-free process for organizers and participants."
+        "Get the latest updates on job openings, industry trends, and career advice to stay ahead in your job search journey."
     },
     {
-      title: "Live Match Scores",
+      title: "Guidance and Support",
       description:
-        "Get real-time updates on cricket matches, including live scores, commentary, and statistics."
+        "Get real-time updates on job opportunities, career advice, and professional development resources."
     },
     {
-      title: "Cricket Analytics",
+      title: "Visa and Work Permit Assistance",
       description:
-        "Access in-depth analytics for player and team performances to help improve strategies and gameplay."
+        "Receive expert guidance and support for visa applications and work permits, ensuring a smooth transition to your new job abroad."
     },
     {
-      title: "News & Updates",
+      title: "Global Networking",
       description:
-        "Stay updated with the latest cricket news, schedules, and upcoming tournaments from around the world."
-    },
-    {
-      title: "Leaderboard",
-      description:
-        "Find your local heroes on the rise. Track top-performing players and teams in your region."
-    },
-    {
-      title: "Team Allocation",
-      description:
-        "Running solo? No problem — we'll help you find the right team to showcase your skills."
+        "Connect with professionals and job seekers from around the world to expand your network and career opportunities."
     }
+    
   ];
 
   return (
@@ -52,7 +43,7 @@ const Services = () => {
         {/* Heading */}
         <h2 className="text-5xl font-extrabold text-center mb-12">
           <span className="text-black">Services </span>
-          <span className="text-yellow-500">at CricFolio</span>
+          <span className="text-yellow-500">at Globalworkspace</span>
         </h2>
 
         {/* Services Grid */}

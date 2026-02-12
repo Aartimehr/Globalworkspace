@@ -11,12 +11,13 @@ const About = () => {
         className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-10 max-w-5xl mx-4 md:mx-auto"
       >
         <h1 className="text-5xl font-extrabold text-center mb-8 text-gray-800">
-          About <span className="text-yellow-500">CricFolio</span>
+          About <span className="text-yellow-500">Globalworkspace</span>
         </h1>
 
         <p className="text-lg md:text-2xl text-gray-700 mb-10 leading-relaxed text-center">
-          Welcome to CricFolio — your ultimate destination for everything cricket!  
-          Whether you are a passionate fan, an aspiring player, or simply someone who loves the game, we bring you the best updates, tutorials, and community experiences.
+         Welcome to Globalworkspace, your ultimate destination to connect with top-tier job opportunities and showcase your professional journey.  
+         We are dedicated to empowering job seekers and employers alike by providing a dynamic platform that fosters growth, collaboration, and success.  
+         Whether you are an aspiring professional looking to land your dream job or an employer seeking exceptional talent, Globalworkspace is here to bridge the gap and create meaningful connections.
         </p>
 
         <div className="space-y-10">
@@ -29,9 +30,9 @@ const About = () => {
               Our Mission
             </h2>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Our mission is to promote cricket by providing comprehensive resources, real-time updates, 
-              and an inclusive community for cricket enthusiasts around the world. 
-              We bridge the gap between fans and the sport they love.
+              Our mission is to revolutionize the job search experience by providing a user-friendly platform that connects talented individuals with their ideal career opportunities.  
+              We strive to create a vibrant community where job seekers can showcase their skills, connect with industry leaders, and access resources that empower them to achieve their professional goals.  
+              At Globalworkspace, we are committed to fostering a supportive environment that promotes growth, diversity, and success for all our users.
             </p>
           </motion.section>
 
@@ -41,14 +42,13 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="text-3xl font-bold text-yellow-500 mb-4">
-              What We Offer
+              We Offer Opportunities Worldwide
             </h2>
             <ul className="list-disc list-inside text-lg md:text-xl text-gray-700 space-y-3">
-              <li>🏆 Latest news and updates about cricket tournaments</li>
-              <li>📊 Player statistics and performance profiles</li>
-              <li>📚 Guides, drills, and tutorials for upcoming players</li>
-              <li>🗓️ Event registration and tournament management tools</li>
-              <li>🤝 A vibrant community forum for discussions and networking</li>
+              <li>Work Permit</li>
+              <li>Visa Assistance</li>
+              <li>Free Consultations</li>
+              <li>Job Opportunities</li>  
             </ul>
           </motion.section>
 
@@ -61,10 +61,9 @@ const About = () => {
               Join Our Journey
             </h2>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Become a part of the CricFolio family and experience cricket like never before!  
-              Whether you&apos;re here to compete, learn, or celebrate the spirit of cricket,  
-              we&apos;re excited to have you with us.  
-              Let&apos;s make cricket accessible, exciting, and community-driven!
+              become a part of our growing community and take the next step in your career journey.  
+              Whether you're a job seeker looking for your dream role or an employer seeking exceptional talent, Globalworkspace is here to support you every step of the way.  
+              Join us today and let's create a brighter future together!
             </p>
           </motion.section>
         </div>
