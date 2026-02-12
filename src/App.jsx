@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar"; // Navbar component
 import Services from "./components/Services";
 import Footer from "./components/Footer";
 import CandidateForm from "./components/CandidateForm";
-import Countrycard from "./components/Countrycard";
+// import Countrycard from "./components/Countrycard";
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing/>}></Route>
         <Route path="/CandidateForm" element={<CandidateForm/>}></Route>
-        <Route path="/Countrycard"  element={<Countrycard/>}></Route>
+        {/* <Route path="/Countrycard"  element={<Countrycard/>}></Route> */}
         <Route path="/contact" element={<ContactUs/>}></Route>
         <Route path="/about" element={<About/>}></Route>
         <Route path="/navbar" element={<Navbar/>}></Route>

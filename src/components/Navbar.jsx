@@ -8,7 +8,7 @@ export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <nav className="font-bold text-md text-white p-4 bg-black relative z-20">
+    <nav className="font-bold text-md text-white p-4 bg-blue-300 relative z-20">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo Section and Navigation Links */}
         <div className="flex items-center space-x-8">
@@ -42,7 +42,7 @@ export default function Navbar() {
               </Link> */}
 
               {showDropdown && (
-                <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md z-50 p-4 w-[700px]">
+                <div className="absolute top-full left-0 mt-2 bg-blue-300 shadow-lg rounded-md z-50 p-4 w-[700px]">
                   <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
                     {mockUpcomingMatches.slice(0, 3).map((match, index) => (
                       <div key={index} className="transform scale-90 w-[220px]">

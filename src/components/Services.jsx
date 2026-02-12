@@ -44,8 +44,8 @@ const Services = () => {
       >
         {/* Heading */}
         <h2 className="text-5xl font-extrabold text-center mb-12">
-          <span className="text-yellow-600">Services </span>
-          <span className="text-yellow-600">at Globalworkspace</span>
+          <span className="text-blue-500">Services </span>
+          <span className="text-blue-700">at Globalworkspace</span>
         </h2>
 
         {/* Services Grid */}

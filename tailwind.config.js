@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'CandidateForm': "url('/src/utilities/images/landingpage.jpg')",  
-        'About': "url('/src/utilities/images/logo1.png')",
-        'contactus': "url('/src/utilities/images/landingpage.jpg')",
-        'service' : "url('/src/utilities/images/leather.jpg')"
+        // 'CandidateForm': "url('/src/utilities/images/landingpage.png')",  
+        // 'About': "url('/src/utilities/images/logo1.png')",
+        // 'contactus': "url('/src/utilities/images/landingpage.png')",
+        // 'service' : "url('/src/utilities/images/leather.jpg')"
       },keyframes: {
         deconstructed1: { 
           '0%': { transform: 'translateX(100%)' },

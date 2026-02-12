@@ -8,24 +8,16 @@ export default function CandidateForm() {
     phoneNumber: '',
     designation: '',
     country: ''
-
   });
 
   const [errors, setErrors] = useState({});
   const [submissionMessage, setSubmissionMessage] = useState(null);
-  const [formVisible, setFormVisible] = useState(true); // State to control form visibility
+  const [formVisible, setFormVisible] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors(prevErrors => ({ ...prevErrors, [name]: undefined })); // Clear error on change
-  };
-
-  const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData((prev) => ({ ...prev, profilePicture: e.target.files[0] }));
-      setErrors(prevErrors => ({ ...prevErrors, profilePicture: undefined }));
-    }
+    setErrors(prevErrors => ({ ...prevErrors, [name]: undefined }));
   };
 
   const validateForm = () => {
@@ -41,7 +33,7 @@ export default function CandidateForm() {
     }
     if (!formData.phoneNumber.trim()) {
       newErrors.phoneNumber = 'Phone Number is required';
-    } else if (!/^[0-9]{10}$/.test(formData.phoneNumber)) {  //basic 10 digit phone number check
+    } else if (!/^[0-9]{10}$/.test(formData.phoneNumber)) {
       newErrors.phoneNumber = 'Invalid phone number';
     }
 
@@ -49,25 +41,50 @@ export default function CandidateForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     if (validateForm()) {
-      console.log('Candidate form submitted', formData);
-      setSubmissionMessage('All the best!'); // added message
-      setFormVisible(false); // Hide the form
-      // TODO: Add backend call
-      setTimeout(() => {
-        setFormData({
-          fullName: '',
-          email: '',
-          phoneNumber: '',
-          designation: '',
-          country: ''
-          
+      // --- DATABASE SECTION START ---
+      try {
+        const response = await fetch('http://localhost:5000/api/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.fullName,
+            email: formData.email,
+            phone: formData.phoneNumber,
+            designation: formData.designation,
+            country: formData.country,
+            source: 'candidateform'
+          }),
         });
-        setFormVisible(true);
-        setSubmissionMessage(null);
-      }, 6000);
 
+        const result = await response.json();
+
+        if (result.status === 'success') {
+          setSubmissionMessage('All the best! Your application has been saved.');
+          setFormVisible(false);
+          
+          setTimeout(() => {
+            setFormData({
+              fullName: '',
+              email: '',
+              phoneNumber: '',
+              designation: '',
+              country: ''
+            });
+            setFormVisible(true);
+            setSubmissionMessage(null);
+          }, 6000);
+        } else {
+          alert('Error: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Database connection error:', error);
+        alert('Could not connect to the database. Please ensure your local server is running.');
+      }
+           // --- DATABASE SECTION END ---
     }
   };
 
@@ -83,8 +100,8 @@ export default function CandidateForm() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="max-w-md mx-auto bg-white/80 backdrop-blur-sm shadow-lg rounded-xl p-8 space-y-8"
           >
-            <h1 className="text-3xl font-extrabold text-center mb-8 text-gray-800">
-              Candidate <span className="text-yellow-500">Form</span>
+            <h1 className="text-3xl font-extrabold text-center mb-8 text-blue-500">
+              Candidate <span className="text-blue-500">Form</span>
             </h1>
 
             <div className="space-y-4 text-black">
@@ -116,8 +133,6 @@ export default function CandidateForm() {
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
-            
-
               <div>
                 <label htmlFor="phoneNumber" className="block text-lg font-medium text-zinc-700 dark:text-black">Phone Number</label>
                 <input
@@ -139,9 +154,9 @@ export default function CandidateForm() {
                   name="designation"
                   value={formData.designation}
                   onChange={handleChange}
-                  className={`w-full appearance-none px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-white text-black ${errors.designation? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-zinc-700"}`}
+                  className={`w-full appearance-none px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-white text-black ${errors.designation? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-zinc-700"}`}
                 >
-                  <option value="Designation">Designation</option>
+                  <option value=""></option>
                   <option value="Construction Worker">Construction Worker</option>
                   <option value="General Labourer">General Labourer</option>
                   <option value="Cleaner">Cleaner</option>
@@ -150,6 +165,7 @@ export default function CandidateForm() {
                 </select>
                 {errors.designation && <p className="text-red-500 text-sm mt-1">{errors.designation}</p>}
               </div>
+
                <div>
                 <label htmlFor="country" className="block text-lg font-medium text-zinc-700 dark:text-black">Country</label>
                 <select
@@ -157,43 +173,20 @@ export default function CandidateForm() {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className={`w-full appearance-none px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-white text-black ${errors.country? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-zinc-700"}`}
+                  className={`w-full appearance-none px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-white text-black ${errors.country? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-zinc-700"}`}
                 >
-                  <option value="country">country</option>
+                  <option value=""></option>
                   <option value="Europe">Europe Countries</option>
                   <option value="Gulf Countries">Gulf Countries</option>
                 </select>
                 {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country}</p>}
               </div>
-              {/* <div>
-                <label htmlFor="profilePicture" className="block text-lg font-medium text-zinc-700 dark:text-black">Profile Picture (Optional)</label>
-                <input
-                  type="file"
-                  id="profilePicture"
-                  onChange={handleFileChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-white text-white dark:text-black"
-                />
-                {formData.profilePicture && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-4 flex justify-center"
-                  >
-                    <img
-                      src={URL.createObjectURL(formData.profilePicture)}
-                      alt="Profile Preview"
-                      className="w-24 h-24 object-cover rounded-full border-2 border-yellow-500 shadow-sm"
-                    />
-                  </motion.div>
-                )}
-              </div> */}
             </div>
 
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={submitForm}
-              className="w-full bg-yellow-600 hover:bg-yellow-700 focus:bg-yellow-700 transition text-black font-semibold py-3 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+              className="w-full bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 transition text-white font-semibold py-3 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Register Now
             </motion.button>
@@ -207,7 +200,7 @@ export default function CandidateForm() {
               exit={{ opacity: 0 }}
               className="max-w-md mx-auto bg-white/80 backdrop-blur-sm shadow-lg rounded-xl p-8 text-center"
             >
-              <p className="text-yellow-500 text-2xl">{submissionMessage}</p>
+              <p className="text-blue-600 text-2xl">{submissionMessage}</p>
             </motion.div>
           )
         )}
