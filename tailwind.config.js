@@ -7,17 +7,10 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'cricket': "url('/src/utilities/images/—Pngtree—3d render of a cricket_11173054.jpg')",
-        'phantoms': "url('/phantoms.png')",
-        'viper': "url('/viper.png')",
-        'strikers': "url('/striker.png')",
-        'phoenix': "url('/phoenix.png')",
-        'titans': "url('/images/titans.png')",
-        //'Aboutus': "url('/src/utilities/images/stadium.jpg')",
-        'contactus': "url('/src/utilities/images/stadiumm.jpg')",
-        'register': "url('/src/utilities/images/cricketball.jpg')",
-        'cricket-ball-resting-on-bat': "url('/src/utilities/images/cricket-ball-resting-on-bat.jpg')",
-        // 'service': "url('/src/utilities/images/cricketplayer.jpg')",
+        'CandidateForm': "url('/src/utilities/images/landingpage.jpg')",  
+        'About': "url('/src/utilities/images/logo1.png')",
+        'contactus': "url('/src/utilities/images/landingpage.jpg')",
+        'service' : "url('/src/utilities/images/leather.jpg')"
       },keyframes: {
         deconstructed1: { 
           '0%': { transform: 'translateX(100%)' },

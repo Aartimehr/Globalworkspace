@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import React from "react";
+
+
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -33,7 +35,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="bg-contactus min-h-screen w-full bg-cover bg-center flex items-center py-20">
+    <div className="bg-service min-h-screen w-full bg-cover bg-center flex items-center py-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -42,8 +44,8 @@ const Services = () => {
       >
         {/* Heading */}
         <h2 className="text-5xl font-extrabold text-center mb-12">
-          <span className="text-black">Services </span>
-          <span className="text-yellow-500">at Globalworkspace</span>
+          <span className="text-yellow-600">Services </span>
+          <span className="text-yellow-600">at Globalworkspace</span>
         </h2>
 
         {/* Services Grid */}
@@ -59,8 +61,8 @@ const Services = () => {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="service-item border border-gray-200 p-8 rounded-2xl shadow-md bg-white/80 backdrop-blur-md cursor-pointer hover:shadow-lg"
             >
-              <h3 className="text-3xl font-extrabold mb-4 text-yellow-500">{service.title}</h3>
-              <p className="text-lg text-gray-700 font-medium">
+              <h3 className="text-3xl font-extrabold mb-4 text-white-500">{service.title}</h3>
+              <p className="text-lg text-white-700 font-medium">
                 {service.description}
               </p>
             </motion.div>

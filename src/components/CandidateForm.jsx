@@ -72,7 +72,7 @@ export default function CandidateForm() {
   };
 
   return (
-    <div className="bg-register min-h-screen w-full bg-cover bg-center overflow-hidden flex items-center justify-center">
+    <div className="bg-CandidateForm min-h-screen w-full bg-cover bg-center overflow-hidden flex items-center justify-center">
       <AnimatePresence>
         {formVisible ? (
           <motion.div

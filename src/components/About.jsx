@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <div className="bg-register min-h-screen w-full bg-cover bg-center overflow-hidden flex items-center justify-center">
+    <div className="bg-About min-h-screen w-full bg-cover bg-center overflow-hidden flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
