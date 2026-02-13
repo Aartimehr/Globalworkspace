@@ -40,7 +40,7 @@ const Services = () => {
       >
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-8">
           <span className="text-blue-500">Services </span>
-          <span className="text-blue-700">at Globalworkspace</span>
+          <span className="text-blue-700">at Globalworkforce</span>
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">

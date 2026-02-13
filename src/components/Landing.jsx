@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CandidateForm from "./CandidateForm";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
   const [showForm, setShowForm] = useState(false);
@@ -22,9 +23,197 @@ export default function Landing() {
     "24/7 Candidate Assistance",
   ];
 
+  // ✅ NEW: CURRENT OPENINGS DATA (correct placement)
+  const currentOpenings = [
+    {
+      title: "Warehouse Worker",
+      country: "Czech Republic",
+      salary: "125–135 CZK / Hour",
+      hours: "8–12 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "6 Weeks",
+      Nationality: "All Countries except Nigeria"
+    },
+    {
+      title: "Kitchen Worker",
+      country: "Czech Republic",
+      salary: "25000 CZK / month (During Internship)",
+      salary: "40000 CZK / month (After Internship)",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "30 Working Days",
+      Nationality: "All Countries"
+    },
+    {
+      title: "Construction Worker",
+      country: "Czech Republic",
+      salary: "25000 CZK / month (During Internship)",
+      salary: "40000 CZK / month (After Internship)",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "30 Working Days",
+      Nationality: "All Countries"
+    },
+    {
+      title: "Production Worker",
+      country: "Czech Republic",
+      salary: "25000 CZK / month (During Internship)",
+      salary: "40000 CZK / month (After Internship)",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "30 Working Days",
+      Nationality: "All Countries"
+    },
+     {
+      title: "Cleaning Worker",
+      country: "Czech Republic",
+      salary: "25000 CZK / month (During Internship)",
+      salary: "40000 CZK / month (After Internship)",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing:"30 Working Days",
+      Nationality: "All Countries"
+    },
+    {
+      title: "Driver",
+      country: "Czech Republic",
+      salary: "25000 CZK / month (During Internship)",
+      salary: "40000 CZK / month (After Internship)",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing:"30 Working Days",
+      Nationality: "All Countries"
+    },
+     
+    {
+      title: "Tree Trimmer",
+      country: "Czech Republic",
+      salary: "21400-25000 CZK / month ",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "30 Working Days",
+      Nationality: "All Countries"
+    },
+     {
+      title: "General Worker",
+      country: "Czech Republic",
+      salary: "21400-25000 CZK / month ",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "30 Working Days",
+      Nationality: "All Countries"
+    },
+    {
+      title: "Rubber Covering Manufacturing Worker",
+      country: "Czech Republic",
+      salary: "130 CZK / hour ",
+      hours: "8–12 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "6 Weeks",
+      Nationality: "All Countries except Nigeria"
+    },
+   {
+      title: "Taxi Driver",
+      country: "Czech Republic",
+      salary: "30000 CZK / month",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "6 weeks",
+      Nationality: "All Countries except Nigeria"
+    },
+    {
+      title: "Special Equipment Driver",
+      country: "Czech Republic",
+      salary: "25000-35000 CZK / month",
+      hours: "8–10 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "30 working days",
+      Nationality: "All Countries"
+    },
+     {
+      title: "Forklift Driver",
+      country: "Czech Republic",
+      salary: "160 CZK /hour",
+      hours: "8–12 hrs/day | 5 days a week",
+      age: "20–55 Years",
+      benefits: ["Accommodation and Transportation provided by the company"],
+      processing: "6 weeks",
+      Nationality: "All Countries except Nigeria"
+    },
+  ];
+   const currentOpenings1 = [
+    {
+      title: "Minibus Driver",
+      country: "Serbia",
+      For: "Men",
+      salary: "465 serbian dinars/ Hour",
+      hours: "168 working hrs/month ",
+      WorkingDays: "Monday-Saturday",
+      age: "18–50 Years",
+      benefits: ["Accommodation and Transportation provided by the company"]
+      
+    },
+     {
+      title: "Warehouse/General Worker",
+      country: "Serbia",
+      For: "Men And Women",
+      salary: "600-700 serbian dinars/month",
+      hours: "8 hrs/day",
+      WorkingDays: "shift hours",
+      age: "under age of 55",
+      benefits: ["Accommodation and Transportation provided by the company"]
+      
+    },
+     {
+      title: "Cleaners",
+      country: "Serbia",
+      For: "Men and Women",
+      salary: "465 serbian dinars/ Hour",
+      hours: "168 working hrs/month | 8-hours/day ",
+      WorkingDays: "Monday-Saturday",
+      age: "18–50 Years",
+      benefits: ["Accommodation and Transportation provided by the company"]
+      
+    },
+     {
+      title: "General Labourer",
+      country: "Serbia",
+      For: "Men",
+      salary: "465 serbian dinars/ Hour",
+      hours: "168 working hrs/month ",
+      WorkingDays: "Monday-Saturday",
+      age: "18–50 Years",
+      benefits: ["Accommodation and Transportation provided by the company"] 
+    },
+     {
+      title: "Construction Worker",
+      country: "Serbia",
+      For: "Men and Women",
+      salary: "600-700 USD/ Month",
+      hours: "8-10 hrs/day ",
+      WorkingDays: "5 Days a week",
+      age: "under age of 55",
+      benefits: ["Accommodation and Transportation provided by the company"] 
+    },
+
+];
+
   useEffect(() => {
     document.body.style.overflow = showForm || showJobs ? "hidden" : "auto";
-    return () => { document.body.style.overflow = "auto"; };
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [showForm, showJobs]);
 
   const Country = ({ name, code }) => (
@@ -43,14 +232,18 @@ export default function Landing() {
 
       {/* ================= HERO ================= */}
       <div className="h-[80vh] relative">
-        <img src="/landingpage.png" alt="Landing" className="absolute top-0 left-0 w-full h-full object-cover object-top"/>
+        <img
+          src="/landingpage.png"
+          alt="Landing"
+          className="absolute top-0 left-0 w-full h-full object-cover object-top"
+        />
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex flex-col justify-top items-center md:items-end h-full px-4 sm:px-6 md:px-20 text-top md:text-top-right space-y-11">
+        <div className="relative z-10 flex flex-col justify-top items-center md:items-end h-full px-4 sm:px-6 md:px-20 space-y-11">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-2xl sm:text-2xl md:text-2xl font-extrabold text-white"
+            className="text-2xl font-extrabold text-white"
           >
             Trusted Pathways to International Jobs
           </motion.h2>
@@ -76,7 +269,7 @@ export default function Landing() {
       <AnimatePresence>
         {showForm && (
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-auto"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -102,76 +295,126 @@ export default function Landing() {
         )}
       </AnimatePresence>
 
-      {/* ================= JOB LIST MODAL ================= */}
-      <AnimatePresence>
-        {showJobs && (
+      {/* ================= CURRENT OPENINGS ================= */}
+      <section className="py-20 px-4 sm:px-6 md:px-20 bg-gradient-to-br from-blue-100 to-blue-300 overflow-hidden">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-extrabold text-center text-black mb-14"
+        >
+          Current International Openings - Czech Republic
+        </motion.h2>
+
+        <div className="relative overflow-hidden">
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="flex gap-8 w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
           >
-            <motion.div
-              initial={{ y: 50 }}
-              animate={{ y: 0 }}
-              exit={{ y: 50 }}
-              className="bg-gray-50 w-full max-w-md p-6 md:p-8 rounded-2xl shadow-2xl relative"
-            >
-              <button
-                onClick={() => setShowJobs(false)}
-                className="absolute top-4 right-4 text-gray-50 hover:text-black text-xl font-bold"
+            {[...currentOpenings, ...currentOpenings].map((job, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="min-w-[320px] bg-white rounded-2xl shadow-xl p-6 border"
               >
-                ✕
-              </button>
+                <h3 className="text-xl font-bold text-blue-700 mb-1">
+                  {job.title}
+                </h3>
+                <p className="text-sm text-gray-600 mb-2">📍 {job.country}</p>
 
-              <h2 className="text-2xl font-bold mb-6 text-amber-600 text-center">
-                Available Jobs
-              </h2>
+                <div className="text-sm text-gray-700 space-y-1">
+                  <p><strong>Salary:</strong> {job.salary}</p>
+                  <p><strong>Hours:</strong> {job.hours}</p>
+                  <p><strong>Age:</strong> {job.age}</p>
+                  <p><strong>Processing:</strong> {job.processing}</p>
+                  <p><strong>Nationality:</strong> {job.Nationality}</p>
+                </div>
 
-              <ul className="space-y-3">
-                {jobs.map((job, index) => (
-                  <li
-                    key={index}
-                    className="p-3 bg-gray-100 rounded-lg hover:bg-amber-100 transition cursor-pointer text-center font-medium"
-                  >
-                    {job}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+                <div className="flex gap-2 flex-wrap mt-4">
+                  {job.benefits.map((b, i) => (
+                    <span
+                      key={i}
+                      className="bg-green-100 text-green-700 px-3 py-1 text-xs rounded-full"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
+
+               <div className="mt-6 flex gap-3">
+  <button className="bg-blue-600 text-white px-4 py-2 rounded">
+  Apply Now
+</button>
+
+<Link to="/current-openings">
+  <button className="border border-blue-600 text-blue-600 px-4 py-2 rounded ml-4">
+    Know More
+  </button>
+</Link>
+
+</div>
+
+              </motion.div>
+            ))}
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      </section>
+       <section className="py-20 px-4 sm:px-6 md:px-20 bg-gradient-to-br from-blue-100 to-blue-300 overflow-hidden">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-extrabold text-center text-black mb-14"
+        >
+          Current International Openings - Serbia
+        </motion.h2>
 
-      {/* ================= COUNTRIES ================= */}
-      <section className="py-16 px-4 sm:px-6 md:px-20 bg-blue-400">
-        <h2 className="text-3xl font-bold text-black text-center mb-10">
-          Countries We Serve
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-xl font-bold mb-6 text-center text-gray-800">European Countries</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
-              <Country name="Serbia" code="rs"/>
-              <Country name="Romania" code="ro"/>
-              <Country name="Portugal" code="pt"/>
-              <Country name="Bulgaria" code="bg"/>
-              <Country name="Poland" code="pl"/>
-              <Country name="Czech Republic" code="cz"/>
-            </div>
-          </div>
+        <div className="relative overflow-hidden">
+          <motion.div
+            className="flex gap-8 w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+          >
+            {[...currentOpenings1, ...currentOpenings1].map((job, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="min-w-[320px] bg-white rounded-2xl shadow-xl p-6 border"
+              >
+                <h3 className="text-xl font-bold text-blue-700 mb-1">
+                  {job.title}
+                </h3>
+                <p className="text-sm text-gray-600 mb-2">📍 {job.country}</p>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-xl font-bold mb-6 text-center text-gray-800">Gulf Countries</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
-              <Country name="UAE" code="ae"/>
-              <Country name="Saudi Arabia" code="sa"/>
-              <Country name="Oman" code="om"/>
-              <Country name="Qatar" code="qa"/>
-              <Country name="Kuwait" code="kw"/>
-              <Country name="Bahrain" code="bh"/>
-            </div>
-          </div>
+                <div className="text-sm text-gray-700 space-y-1">
+                  <p><strong>Salary:</strong> {job.salary}</p>
+                  <p><strong>Hours:</strong> {job.hours}</p>
+                  <p><strong>Age:</strong> {job.age}</p>
+                  <p><strong>For:</strong> {job.For}</p>
+                  <p><strong>Working Days:</strong> {job.WorkingDays}</p>
+                </div>
+
+                <div className="flex gap-2 flex-wrap mt-4">
+                  {job.benefits.map((b, i) => (
+                    <span
+                      key={i}
+                      className="bg-green-100 text-green-700 px-3 py-1 text-xs rounded-full"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setShowForm(true)}
+                  className="mt-6 w-full bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-full font-semibold transition"
+                >
+                  Apply Now
+                </button>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -180,74 +423,20 @@ export default function Landing() {
         <h2 className="text-3xl font-bold text-center text-black mb-12">
           Why Choose Globalworkspace?
         </h2>
-        <div className="relative w-full overflow-hidden">
-          <motion.div
-            className="flex gap-8 w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-          >
-            {[...whyChooseUs, ...whyChooseUs].map((item, index) => (
-              <div
-                key={index}
-                className="min-w-[300px] bg-white shadow-xl rounded-xl p-6 text-center font-medium text-black"
-              >
-                {item}
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ================= ADDITIONAL SECTIONS ================= */}
-      {[
-        {
-          title: "How You Can Earn",
-          content: "Discover multiple ways to boost your income. Whether through remote jobs, freelancing, or project-based opportunities, we provide the guidance and resources to maximize your earning potential globally.",
-          list: ["Freelance opportunities in IT, design, and marketing","Project-based assignments with global clients","Remote job placements with international companies"]
-        },
-        {
-          title: "Life Outside Your Country",
-          content: "Experience new cultures, better pay, and career growth opportunities. Working abroad opens doors to diverse experiences, professional networking, and a higher standard of living.",
-          list: ["Explore new cultures and languages","Higher earning potential","Professional growth and global networking"]
-        },
-        {
-          title: "How US GlobalWorkspace Can Help You",
-          content: "We connect talent to global opportunities, streamline job applications, and provide mentorship to succeed internationally.",
-          list: ["Guidance on international job applications","Resume and profile optimization for global employers","Mentorship and career advice from experienced professionals"]
-        },
-      ].map((section, idx) => (
-        <section key={idx} className="max-w-7xl mx-auto my-12 p-6 md:p-10 bg-white rounded-2xl shadow-lg">
-          <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-blue-600 mb-6 border-b-2 border-gray-200 pb-2">{section.title}</h2>
-          <p className="text-base sm:text-lg md:text-lg mb-4">{section.content}</p>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            {section.list.map((item, i) => <li key={i}>{item}</li>)}
-          </ul>
-        </section>
-      ))}
-
-      {/* ================= SOCIAL ================= */}
-      <section className="max-w-7xl mx-auto my-12 p-6 md:p-10 bg-white rounded-2xl shadow-lg text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-blue-600 mb-6 border-b-2 border-gray-200 pb-2">Connect With Us</h2>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <a href="https://www.linkedin.com" target="_blank" className="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">LinkedIn</a>
-          <a href="https://twitter.com" target="_blank" className="bg-blue-400 text-white px-6 py-3 rounded-full shadow hover:bg-blue-500 transition">Twitter</a>
-          <a href="https://www.facebook.com" target="_blank" className="bg-blue-800 text-white px-6 py-3 rounded-full shadow hover:bg-blue-900 transition">Facebook</a>
-          <a href="https://www.instagram.com" target="_blank" className="bg-pink-500 text-white px-6 py-3 rounded-full shadow hover:bg-pink-600 transition">Instagram</a>
-        </div>
-      </section>
-
-      {/* ================= REGIONAL JOB LINKS ================= */}
-      <section className="max-w-7xl mx-auto my-12 p-6 md:p-10 bg-white rounded-2xl shadow-lg">
-        <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-blue-600 mb-6 border-b-2 border-gray-200 pb-2">Opportunities in Europe & Gulf Countries</h2>
-        <p className="text-base sm:text-lg md:text-lg mb-4">Explore remote and on-site job openings in top international markets:</p>
-        <ul className="list-disc list-inside space-y-2 text-gray-700">
-          <li>
-            <a href="https://www.google.com/search?q=jobs+in+Europe" target="_blank" className="text-blue-600 hover:underline">Europe Jobs</a>
-          </li>
-          <li>
-            <a href="https://www.google.com/search?q=jobs+in+Gulf+Countries" target="_blank" className="text-blue-600 hover:underline">Gulf Countries Jobs</a>
-          </li>
-        </ul>
+        <motion.div
+          className="flex gap-8 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+        >
+          {[...whyChooseUs, ...whyChooseUs].map((item, index) => (
+            <div
+              key={index}
+              className="min-w-[300px] bg-white shadow-xl rounded-xl p-6 text-center font-medium text-black"
+            >
+              {item}
+            </div>
+          ))}
+        </motion.div>
       </section>
 
     </div>

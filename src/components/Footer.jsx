@@ -8,7 +8,7 @@ export default function Footer() {
         
         {/* Logo / Description */}
         <div>
-          <h2 className="text-xl font-bold text-black mb-2">Globalworkspace</h2>
+          <h2 className="text-xl font-bold text-black mb-2">Globalworkforce</h2>
           <p className="text-sm text-black">
             Your job findings are right here.
           </p>
@@ -27,13 +27,13 @@ export default function Footer() {
         {/* Social or Info */}
         <div>
           <h3 className="font-semibold text-lg mb-3">Get in Touch</h3>
-          <p className="text-sm text-black">Email: support@globalworkspace.com</p>
-          <p className="text-sm text-black">Phone: +91-9999272823</p>
+          <p className="text-sm text-black">Email: globalworkforce22@gmail.com</p>
+          <p className="text-sm text-black">Phone: +91-9217918831</p>
         </div>
       </div>
 
       <div className="text-center text-xs text-gray-500 mt-8 border-t pt-4">
-        © {new Date().getFullYear()} Globalworkspace. All rights reserved.
+        © {new Date().getFullYear()} Globalworkforce. All rights reserved.
       </div>
     </footer>
   );
