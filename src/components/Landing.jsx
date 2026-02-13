@@ -45,7 +45,7 @@ export default function Landing() {
       <div className="h-[80vh] relative">
         <img src="/landingpage.png" alt="Landing" className="absolute top-0 left-0 w-full h-full object-cover object-top"/>
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex flex-col justify-center items-center md:items-end h-full px-4 sm:px-6 md:px-20 text-center md:text-right space-y-6">
+        <div className="relative z-10 flex flex-col justify-top items-center md:items-end h-full px-4 sm:px-6 md:px-20 text-top md:text-top-right space-y-11">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
