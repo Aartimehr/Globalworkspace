@@ -343,9 +343,12 @@ export default function Landing() {
                 </div>
 
                <div className="mt-6 flex gap-3">
-  <button className="bg-blue-600 text-white px-4 py-2 rounded">
-  Apply Now
-</button>
+  <button
+                  onClick={() => setShowForm(true)}
+                  className="mt-6 w-full bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-full font-semibold transition"
+                >
+                  Apply Now
+                </button>
 
 <Link to="/current-openings">
   <button className="border border-blue-600 text-blue-600 px-4 py-2 rounded ml-4">
