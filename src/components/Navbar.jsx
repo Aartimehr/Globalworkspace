@@ -5,20 +5,20 @@ import CountryCard from './Countrycard';
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // New state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <nav className="font-bold text-md text-white p-4 bg-blue-300 relative z-20">
       <div className="container mx-auto flex justify-between items-center">
 
-        {/* Logo Section */}
+        {/* Logo */}
         <div className="flex items-center space-x-8">
           <Link to="/">
             <img src={logo} alt="Logo" className="h-16 w-auto" />
           </Link>
         </div>
 
-        {/* Hamburger Button for Mobile */}
+        {/* Hamburger for Mobile */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -29,7 +29,7 @@ export default function Navbar() {
         </div>
 
         {/* Navigation Links */}
-        <ul className={`flex-col md:flex md:flex-row md:space-x-8 absolute md:static top-full left-0 w-full md:w-auto bg-blue-300 md:bg-transparent transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-[500px]' : 'max-h-0 md:max-h-full'}`}>
+        <ul className={`flex-col md:flex md:flex-row md:space-x-8 w-full md:w-auto overflow-hidden transition-all duration-300 ${mobileMenuOpen ? 'block' : 'hidden'} md:block`}>
           
           {/* Home */}
           <li className="relative group p-2 md:p-0">
@@ -38,7 +38,7 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {/* Dropdown Example */}
+          {/* Dropdown Example (Desktop Only) */}
           <li
             className="relative p-2 md:p-0"
             onMouseEnter={() => setShowDropdown(true)}
@@ -47,7 +47,6 @@ export default function Navbar() {
             {showDropdown && (
               <div className="absolute top-full left-0 mt-2 bg-blue-300 shadow-lg rounded-md z-50 p-4 w-[700px] hidden md:block">
                 <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
-                  {/* Replace mockUpcomingMatches with your actual data */}
                   {mockUpcomingMatches.slice(0, 3).map((match, index) => (
                     <div key={index} className="transform scale-90 w-[220px]">
                       <CountryCard match={match} />
@@ -85,7 +84,6 @@ export default function Navbar() {
               Contact Us
             </Link>
           </li>
-
         </ul>
       </div>
     </nav>
