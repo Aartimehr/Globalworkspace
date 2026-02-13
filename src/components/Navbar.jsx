@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../utilities/images/logo1.png';
 import CountryCard from './Countrycard';
-import { mockUpcomingMatches } from '../data/mockData';
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
