@@ -50,7 +50,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white"
+            className="text-2xl sm:text-2xl md:text-2xl font-extrabold text-white"
           >
             Trusted Pathways to International Jobs
           </motion.h2>
