@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 
-
-
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
   hover: { scale: 1.05, boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)" }
 };
@@ -31,25 +28,22 @@ const Services = () => {
       description:
         "Connect with professionals and job seekers from around the world to expand your network and career opportunities."
     }
-    
   ];
 
   return (
-    <div className="bg-service min-h-screen w-full bg-cover bg-center flex items-center py-20">
+    <div className="bg-service w-full bg-cover bg-center py-10 sm:py-12 md:py-20 flex justify-center">
       <motion.div
         initial="hidden"
         whileInView="visible"
         transition={{ duration: 1 }}
-        className="services-container text-black max-w-6xl mx-auto px-6"
+        className="max-w-full sm:max-w-3xl md:max-w-6xl px-4 sm:px-6"
       >
-        {/* Heading */}
-        <h2 className="text-5xl font-extrabold text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-8">
           <span className="text-blue-500">Services </span>
           <span className="text-blue-700">at Globalworkspace</span>
         </h2>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
           {servicesData.map((service, index) => (
             <motion.div
               key={index}
@@ -58,13 +52,11 @@ const Services = () => {
               whileInView="visible"
               whileHover="hover"
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="service-item border border-gray-200 p-8 rounded-2xl shadow-md bg-white/80 backdrop-blur-md cursor-pointer hover:shadow-lg"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="service-item border border-gray-200 p-6 sm:p-8 rounded-2xl shadow-md bg-white/80 backdrop-blur-md cursor-pointer hover:shadow-lg"
             >
-              <h3 className="text-3xl font-extrabold mb-4 text-white-500">{service.title}</h3>
-              <p className="text-lg text-white-700 font-medium">
-                {service.description}
-              </p>
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-blue-500">{service.title}</h3>
+              <p className="text-sm sm:text-base text-black">{service.description}</p>
             </motion.div>
           ))}
         </div>

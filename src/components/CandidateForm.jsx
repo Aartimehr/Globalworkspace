@@ -9,15 +9,14 @@ export default function CandidateForm() {
     designation: '',
     country: ''
   });
-
   const [errors, setErrors] = useState({});
   const [submissionMessage, setSubmissionMessage] = useState(null);
   const [formVisible, setFormVisible] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors(prevErrors => ({ ...prevErrors, [name]: undefined }));
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: undefined }));
   };
 
   const validateForm = () => {
@@ -65,14 +64,13 @@ export default function CandidateForm() {
     }
   };
 
-  // Animation variants for steps and form
   const fadeSlide = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
   };
 
   return (
-    <div className="bg-CandidateForm min-h-screen w-full bg-cover bg-center flex flex-col items-center justify-center overflow-hidden">
+    <div className="bg-CandidateForm w-full bg-cover bg-center flex flex-col items-center p-4 sm:p-6 md:p-12">
       <AnimatePresence>
         {formVisible ? (
           <motion.div
@@ -81,125 +79,79 @@ export default function CandidateForm() {
             animate="visible"
             exit="hidden"
             variants={fadeSlide}
-            className="w-full h-full md:h-auto max-w-none bg-white/90 backdrop-blur-md shadow-xl flex flex-col justify-start p-8 md:p-20 overflow-y-auto"
+            className="w-full sm:max-w-3xl md:max-w-4xl bg-white/90 backdrop-blur-md shadow-xl rounded-xl p-6 sm:p-10"
           >
 
             {/* ================= STEPS SECTION ================= */}
             <motion.div
-              className="mb-10 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
+              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-600 mb-6">How to Apply</h2>
-              <div className="grid md:grid-cols-4 gap-6 text-center">
-                <div className="bg-blue-50 p-4 rounded-lg shadow">
-                  <span className="text-2xl font-bold text-blue-500">1</span>
-                  <p className="mt-2 text-gray-700">Fill Your Personal Details</p>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg shadow">
-                  <span className="text-2xl font-bold text-blue-500">2</span>
-                  <p className="mt-2 text-gray-700">Choose Your Designation & Country</p>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg shadow">
-                  <span className="text-2xl font-bold text-blue-500">3</span>
-                  <p className="mt-2 text-gray-700">Submit Form for Review</p>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg shadow">
-                  <span className="text-2xl font-bold text-blue-500">4</span>
-                  <p className="mt-2 text-gray-700">Get Confirmation & Next Steps</p>
-                </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-600 mb-4">How to Apply</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                {[
+                  { step: 1, text: "Fill Your Personal Details" },
+                  { step: 2, text: "Choose Your Designation & Country" },
+                  { step: 3, text: "Submit Form for Review" },
+                  { step: 4, text: "Get Confirmation & Next Steps" }
+                ].map(({ step, text }) => (
+                  <div key={step} className="bg-blue-50 p-4 rounded-lg shadow text-center">
+                    <span className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-500">{step}</span>
+                    <p className="mt-2 text-sm sm:text-base md:text-base text-gray-700">{text}</p>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
             {/* ================= FORM SECTION ================= */}
-            <div className="space-y-6 text-black max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-extrabold text-center mb-8 text-blue-500">
-                Candidate <span className="text-blue-500">Form</span>
-              </h1>
-
-              <div>
-                <label htmlFor="fullName" className="block text-lg font-medium text-zinc-700">Full Name</label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  placeholder="Enter your full name"
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black ${errors.fullName ? "border-red-500 focus:ring-red-500" : "border-gray-300"}`}
-                />
-                {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-lg font-medium text-zinc-700">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black ${errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300"}`}
-                />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="phoneNumber" className="block text-lg font-medium text-zinc-700">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  placeholder="Enter your phone number"
-                  className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black ${errors.phoneNumber ? "border-red-500 focus:ring-red-500" : "border-gray-300"}`}
-                />
-                {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="designation" className="block text-lg font-medium text-zinc-700">Designation</label>
-                <select
-                  id="designation"
-                  name="designation"
-                  value={formData.designation}
-                  onChange={handleChange}
-                  className={`w-full appearance-none px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black ${errors.designation ? "border-red-500 focus:ring-red-500" : "border-gray-300"}`}
-                >
-                  <option value=""></option>
-                  <option value="Construction Worker">Construction Worker</option>
-                  <option value="General Labourer">General Labourer</option>
-                  <option value="Cleaner">Cleaner</option>
-                  <option value="Minibus Driver">Minibus Driver</option>
-                  <option value="Warehouse/General Worker">Warehouse/General Worker</option>
-                </select>
-                {errors.designation && <p className="text-red-500 text-sm mt-1">{errors.designation}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="country" className="block text-lg font-medium text-zinc-700">Country</label>
-                <select
-                  id="country"
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  className={`w-full appearance-none px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black ${errors.country ? "border-red-500 focus:ring-red-500" : "border-gray-300"}`}
-                >
-                  <option value=""></option>
-                  <option value="Europe">Europe Countries</option>
-                  <option value="Gulf Countries">Gulf Countries</option>
-                </select>
-                {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country}</p>}
-              </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 text-blue-500">
+              Candidate <span className="text-blue-600">Form</span>
+            </h1>
+            <div className="space-y-4">
+              {/* Form Fields */}
+              {["fullName","email","phoneNumber","designation","country"].map(field => (
+                <div key={field}>
+                  <label className="block text-sm sm:text-base font-medium text-gray-700 mb-1 capitalize">{field.replace(/([A-Z])/g, ' $1')}</label>
+                  {field === "designation" || field === "country" ? (
+                    <select
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-black"
+                    >
+                      <option value=""></option>
+                      {field==="designation" && <>
+                        <option value="Construction Worker">Construction Worker</option>
+                        <option value="General Labourer">General Labourer</option>
+                        <option value="Cleaner">Cleaner</option>
+                        <option value="Minibus Driver">Minibus Driver</option>
+                        <option value="Warehouse/General Worker">Warehouse/General Worker</option>
+                      </>}
+                      {field==="country" && <>
+                        <option value="Europe">Europe Countries</option>
+                        <option value="Gulf Countries">Gulf Countries</option>
+                      </>}
+                    </select>
+                  ) : (
+                    <input
+                      type={field==="email"?"email":"text"}
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-black"
+                    />
+                  )}
+                  {errors[field] && <p className="text-red-500 text-sm mt-1">{errors[field]}</p>}
+                </div>
+              ))}
             </div>
 
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={submitForm}
-              className="mt-10 w-full md:w-1/2 mx-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md"
             >
               Register Now
             </motion.button>
@@ -211,9 +163,9 @@ export default function CandidateForm() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full h-full flex items-center justify-center bg-white/90 backdrop-blur-md shadow-lg rounded-xl p-10 text-center"
+              className="w-full max-w-3xl bg-white/90 backdrop-blur-md shadow-lg rounded-xl p-6 text-center"
             >
-              <p className="text-blue-600 text-3xl">{submissionMessage}</p>
+              <p className="text-blue-600 text-lg sm:text-xl">{submissionMessage}</p>
             </motion.div>
           )
         )}
