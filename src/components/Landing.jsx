@@ -300,7 +300,7 @@ export default function Landing() {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="text-3xl md:text-4xl font-extrabold text-center text-black mb-14"
         >
           Current International Openings - Czech Republic
@@ -310,7 +310,7 @@ export default function Landing() {
           <motion.div
             className="flex gap-8 w-max"
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 95, ease: "linear" }}
           >
             {[...currentOpenings, ...currentOpenings].map((job, index) => (
               <motion.div
@@ -367,7 +367,7 @@ export default function Landing() {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="text-3xl md:text-4xl font-extrabold text-center text-black mb-14"
         >
           Current International Openings - Serbia
@@ -377,7 +377,7 @@ export default function Landing() {
           <motion.div
             className="flex gap-8 w-max"
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 65, ease: "linear" }}
           >
             {[...currentOpenings1, ...currentOpenings1].map((job, index) => (
               <motion.div
